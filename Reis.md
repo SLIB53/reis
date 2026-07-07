@@ -27,3 +27,61 @@ sudo vi /etc/pam.d/sshd  # INTERVENE: Look for optional session configurations y
 ```sh
 touch ~/.hushlogin
 ```
+
+
+### macOS Parity
+
+#### SSH Configuration
+
+Add reis as a host to `~/.ssh/config`, and remember to set forward COLORTERM. By default, Ubuntu accepts this in its `/etc/ssh/sshd_config`.
+
+```ssh
+Host reis
+	HostName # CHANGEME
+	User # CHANGEME
+	ServerAliveInterval 60
+	ServerAliveCountMax 3
+	SendEnv COLORTERM
+```
+
+
+#### Configure Fish Theme & Keybindings
+
+Fish themes vary between macOS and Ubuntu, mainly in their case. For example, `mono-smoke` is `Mono Smoke` on Ubuntu. Further, the opt key behaves slightly differently from the macOS default behavior.
+
+```fish
+fish_config theme choose "Mono Smoke"
+```
+
+```fish
+bind alt-left backward-word
+bind alt-right forward-word
+bind alt-backspace backward-kill-word
+```
+
+
+#### Share Helix Configurations
+
+```sh
+scp ~/.config/helix/config.toml reis:/home/akil/.config/helix/
+```
+
+```sh
+scp -r ~/.config/helix/themes/ reis:/home/akil/.config/helix/
+```
+
+**Note:** Before sharing helix configurations, a quick reminder that terminal apps may need a configuration change to send the appropriate character for opt/cmd. For example, the following configures Ghostty:
+
+```ini
+# Opt+arrows: send real Alt+Arrow instead of ESC b/f
+keybind = alt+left=csi:1;3D
+keybind = alt+right=csi:1;3C
+keybind = shift+alt+left=csi:1;4D
+keybind = shift+alt+right=csi:1;4C
+
+# Cmd+arrows: send Home/End
+keybind = super+left=csi:H
+keybind = super+right=csi:F
+keybind = shift+super+left=csi:1;2H
+keybind = shift+super+right=csi:1;2F
+```

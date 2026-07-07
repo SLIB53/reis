@@ -411,10 +411,12 @@ EOF
 as_user tee "${TARGET_HOME}/.config/fish/conf.d/reis.fish" >/dev/null <<'EOF'
 set --global fish_greeting ''
 
-alias sl eza
-alias sla 'eza -la'
-alias slr 'eza --tree'
-alias slra 'eza -la --tree'
+alias batp 'bat --style=plain'
+alias batpn 'bat --style=plain,+numbers'
+
+alias sla 'eza --group-directories-first --classify -la'
+alias slr 'eza --group-directories-first --classify --tree'
+alias slra 'eza --group-directories-first --classify --tree -la'
 EOF
 
 THEME_REPO="https://github.com/slib53/pepper-fish-theme.git"
