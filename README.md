@@ -1,5 +1,7 @@
 # Reis
 
+Reis is a homelab setup for running CUDA workloads on a Razer Blade Laptop. The bare-metal installation maintains a dual-boot (Windows 11 and Ubuntu 26.04 LTS), and preinstalls all of my wanted configurations and tools. The Ubuntu installation is on a BTRFS partition encrypted with LUKS, and a ZFS pool was also created on the side for storage. Normally I would've written this installation myself, but with the availability of Claude Fable 5, I thought I'd try and let it write it for me. I did my best to refrain, but I certainly had to carefully guide it and vetted each and every section until I felt it made a secure enough installation without anything I didn't ask for. This script has been deployed, and I will update it as my usage changes.
+
 ## Customization
 
 ### Set Screen Brightness
